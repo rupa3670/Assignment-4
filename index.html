@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-700">
     <header class="w-[80%] mx-auto">
         <h1 class="text-4xl font-bold ">Job Application Tracker</h1>
         <div class="grid grid-cols-3 gap-8 ">
@@ -28,11 +28,39 @@
     </header>
     <hr class="w-[80%] mx-auto my-8 border-gray-300">
     <main class="w-[80%] mx-auto">
-        <div class="">
+        <div class="mb-7">
+            <h2 class="mb-4 font-bold text-2xl">Available Jobs </h2>
             <button class="bg-blue-500 px-5 py-2 rounded-sm text-white" id="all-filter-btn">All</button>
-            <button class="bg-white  px-5 py-2" id="interview-filter-btn" >Interview</button>
-            <button class="bg-white  px-5 py-2" id="rejected-filter-btn">Rejected</button>
+            <button class="bg-white  px-5 py-2" id="interview-filter-btn" >INTERVIEW</button>
+            <button class="bg-white  px-5 py-2" id="rejected-filter-btn">REJECTED</button>
         </div>
+
+        <section id="all-card" class="">
+            <!-- card-1 -->
+         <div class="flex justify-between  bg-white p-5 rounded-md">
+            <!-- mainCard-1 -->
+            <div class="space-y-4">
+                <!-- part-1 -->
+                <div class="">
+                    <h2 class="company-name font-bold">Brain Station 23</h2>
+                <p class="work-type text-gray-500">Frontend Developer</p>
+                </div>
+                <!-- part-2 -->
+                 <div class="">
+                     <p class="salary text-gray-500">Salary: 50,000 - 70,000 BDT</p>
+                 </div>
+                <!-- part-3 -->
+                 <p class="status">NOT APPLIED</p>
+                 <p>Develop responsive user interfaces using React,CSS and integrate REST APIs.</p>
+                 <!-- part-4 -->
+                 <div class="gap-4">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
+                <button class="rejected-btn font-medium text-red-500 px-4 py-2 border border-b-red-500 rounded-sm ">REJECTED</button></div>
+              
+            </div>
+             <!-- mainCard-2 -->
+            <div ><button class="justify-end"><img src="./Group 1.png" alt=""></button></div> 
+         </div>
+        </section>
         
     </main>
 </body>
