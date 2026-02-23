@@ -10,19 +10,19 @@
 
 <body class="bg-gray-100 text-gray-700">
     <header class="w-[80%] mx-auto">
-        <h1 class="text-4xl font-bold ">Job Application Tracker</h1>
+        <h1 class="text-4xl font-bold mt-6 mb-5 ">Job Application Tracker</h1>
         <div class="grid grid-cols-3 gap-8 ">
             <div class="bg-white p-4 rounded-[5px]">
                 <p>Total</p>
-                <p id="total">0</p>
+                <p id="total" class="font-bold">0</p>
             </div>
             <div class="bg-white p-4 rounded-[5px]">
                 <p>Interview</p>
-                <p id="cnt-interview">0</p>
+                <p id="cnt-interview" class="font-bold text-green-500">0</p>
             </div>
             <div class="bg-white p-4 rounded-[5px]">
                 <p>Rejected</p>
-                <p id="cnt-rejected">0</p>
+                <p id="cnt-rejected" class="font-bold text-red-500">0</p>
             </div>
         </div>
     </header>
@@ -33,12 +33,12 @@
              <p class="text-gray-500">8 jobs</p>
         </div>
         <div class="mb-4 flex gap-2">
-            <button class="bg-blue-500 px-5 py-2 rounded-sm text-white" id="all-filter-btn">All</button>
-            <button class="bg-white  px-5 py-2 rounded-sm" id="interview-filter-btn" >INTERVIEW</button>
-            <button class="bg-white  px-5 py-2 rounded-sm" id="rejected-filter-btn">REJECTED</button>
+            <button onclick="toggleStyle('all-filter-btn')" class="cursor-pointer active:translate-y-0.5 bg-blue-500 px-5 py-2 rounded-sm text-white" id="all-filter-btn">All</button>
+            <button onclick="toggleStyle('interview-filter-btn')" class="cursor-pointer active:translate-y-0.5 bg-white  px-5 py-2 rounded-sm" id="interview-filter-btn" >INTERVIEW</button>
+            <button onclick="toggleStyle('rejected-filter-btn')" class="cursor-pointer active:translate-y-0.5 bg-white  px-5 py-2 rounded-sm" id="rejected-filter-btn">REJECTED</button>
         </div>
 
-        <section id="all-card" class="space-y-4">
+        <section id="all-cards" class="space-y-4">
             <!-- card-1 -->
          <div class="flex justify-between  bg-white p-5 rounded-md">
             <!-- mainCard-1 -->
@@ -53,7 +53,7 @@
                      <p class="salary text-gray-500">Full-time.  60,000 - 85,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[21%]">NOT APPLIED</p>
                  <p>Design secure backend services using Node.js, Express and PostgreSQL for government projects.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -77,7 +77,7 @@
                      <p class="salary text-gray-500">Full-time. 50,000 - 70,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[26%]">NOT APPLIED</p>
                  <p>Develop responsive user interfaces using React,CSS and integrate REST APIs.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -101,7 +101,7 @@
                      <p class="salary text-gray-500">Remote. Full-time. 75,000 - 110,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[25%]">NOT APPLIED</p>
                  <p>Work with international clients building scalable enterprise-level web applications.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -125,7 +125,7 @@
                      <p class="salary text-gray-500">Full-time. 45,000 - 65,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[30%]">NOT APPLIED</p>
                  <p>Build and maintain internal ERP systems using Laravel and Vue.js.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -149,7 +149,7 @@
                      <p class="salary text-gray-500">Full-time. 40,000 - 60,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[24%]">NOT APPLIED</p>
                  <p>Perform manual and automated testing to ensure software quality and performance.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -173,7 +173,7 @@
                      <p class="salary text-gray-500">Full-time. 65,000 - 95,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[24%]">NOT APPLIED</p>
                  <p>Develop Android and iOS applications using Flutter and maintain production releases.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -197,7 +197,7 @@
                      <p class="salary text-gray-500">Full-time. 80,000 - 120,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[23%]">NOT APPLIED</p>
                  <p>Manage CI/CD pipelines, Docker containers, and AWS infrastructure for telecom platforms.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -221,7 +221,7 @@
                      <p class="salary text-gray-500">Full-time. 55,000 - 75,000 BDT</p>
                  </div>
                 <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
+                 <p class="status bg-gray-200 px-4 py-2 w-[24%]">NOT APPLIED</p>
                  <p>Design modern SaaS dashboards, wireframes and interactive prototypes using Figma.</p>
                  <!-- part-4 -->
                  <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
@@ -231,33 +231,11 @@
              <!-- mainCard-2 -->
             <div ><button class="justify-end"><img src="./Group 1.png" alt=""></button></div> 
          </div>
-             <!-- card-1 -->
-         <div class="flex justify-between  bg-white p-5 rounded-md">
-            <!-- mainCard-1 -->
-            <div class="space-y-4">
-                <!-- part-1 -->
-                <div class="">
-                    <h2 class="company-name font-bold">Brain Station 23</h2>
-                <p class="work-type text-gray-500">Frontend Developer</p>
-                </div>
-                <!-- part-2 -->
-                 <div class="">
-                     <p class="salary text-gray-500">Salary: 50,000 - 70,000 BDT</p>
-                 </div>
-                <!-- part-3 -->
-                 <p class="status">NOT APPLIED</p>
-                 <p>Develop responsive user interfaces using React,CSS and integrate REST APIs.</p>
-                 <!-- part-4 -->
-                 <div class="flex gap-3">  <button class="interview-btn font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm" >INTERVIEW</button>
-                <button class="rejected-btn font-medium text-red-500 px-4 py-2 border border-b-red-500 rounded-sm ">REJECTED</button></div>
-              
-            </div>
-             <!-- mainCard-2 -->
-            <div ><button class="justify-end"><img src="./Group 1.png" alt=""></button></div> 
-         </div>
+        
         </section>
         
     </main>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
