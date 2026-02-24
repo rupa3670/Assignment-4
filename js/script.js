@@ -1,6 +1,6 @@
 let interviewList = [];
 let rejectedList = [];
-let currentStatus = [];
+let currentStatus = 'all-filter-btn';
 
 let total = document.getElementById('total');
 let interviewCount = document.getElementById('cnt-interview');
@@ -15,18 +15,27 @@ const allCardSection = document.getElementById('all-cards');
 const mainContainer = document.querySelector('main');
 const filteredSection = document.getElementById('filtered-section');
 
-const jobCounts=document.getElementById('job-cnt');
+const jobCounts = document.getElementById('job-cnt');
 
 
 
 function calculateCnt() {
-    const currentJobs=allCardSection.children.length;
-    total.innerText = allCardSection.children.length;
+
+    let totalJobs = allCardSection.children.length;
+    total.innerText = totalJobs;
     interviewCount.innerText = interviewList.length;
     rejectedCount.innerText = rejectedList.length
 
-    if(jobCounts){
-        jobCounts.innerText=`${currentJobs} jobs`;
+    if (jobCounts) {
+        if(currentStatus==='all-filter-btn'){
+            jobCounts.innerText=`${totalJobs} jobs`;
+        }
+         else if(currentStatus==='interview-filter-btn'){
+            jobCounts.innerText=`${interviewList.length} jobs`;
+        }
+        else if(currentStatus==='rejected-filter-btn'){
+            jobCounts.innerText=`${rejectedList.length} jobs`;
+        }
     }
 }
 calculateCnt()
@@ -37,14 +46,16 @@ function toggleStyle(id) {
     rejectedFilterBtn.classList.remove('bg-blue-500', 'text-white')
 
     allFilterBtn.classList.add('bg-white', 'text-gray-700')
-    interviewFilterBtn.classList.add('bg-white', 'text-gry-700')
+    interviewFilterBtn.classList.add('bg-white', 'text-gray-700')
     rejectedFilterBtn.classList.add('bg-white', 'text-gray-700')
 
     const selected = document.getElementById(id)
 
-     currentStatus =id
+    currentStatus = id
     selected.classList.remove('bg-white', 'text-gray-700')
     selected.classList.add('bg-blue-500', 'text-white')
+    
+      calculateCnt();
 
     if (id == 'interview-filter-btn') {
         allCardSection.classList.add('hidden')
@@ -63,35 +74,37 @@ function toggleStyle(id) {
     }
 
 }
-mainContainer.addEventListener('click', function (event)
- {
-    if(event.target.closest('.delete-btn')){
-        const card=event.target.closest('.div-card')
-        if(card){
-            const companyName=card.querySelector('.company-name').innerText;
+mainContainer.addEventListener('click', function (event) {
+    if (event.target.closest('.delete-btn')) {
+        const card = event.target.closest('.div-card')
+        if (card) {
+            const companyName = card.querySelector('.company-name').innerText;
 
-            interviewList=interviewList.filter(item=>item.companyName !== companyName);
-           rejectedList=rejectedList.filter(item=>item.companyName !== companyName);
+            interviewList = interviewList.filter(item => item.companyName !== companyName);
+            rejectedList = rejectedList.filter(item => item.companyName !== companyName);
 
-           card.remove();
-           calculateCnt();
-           if(currentStatus==='interview-filter-btn'){
-            renderInterview()
-           }
-           if(currentStatus==='rejected-filter-btn')
-        
-           {
-            renderRejected()
-           }
+            card.remove();
+            calculateCnt();
+            if (currentStatus === 'interview-filter-btn') {
+                renderInterview()
+            }
+            if (currentStatus === 'rejected-filter-btn') {
+                renderRejected()
+            }
         }
 
 
     }
-    
+
     else if (event.target.classList.contains('interview-btn')) {
         const parentNode = event.target.parentNode.parentNode;
+
+        
+
         const companyName = parentNode.querySelector('.company-name').innerText
         const workType = parentNode.querySelector('.work-type').innerText;
+        const location = parentNode.querySelector('.location').innerText;
+        const type = parentNode.querySelector('.type').innerText;
         const salary = parentNode.querySelector('.salary').innerText
         const status = parentNode.querySelector('.status').innerText
         const description = parentNode.querySelector('.description').innerText
@@ -100,10 +113,15 @@ mainContainer.addEventListener('click', function (event)
         const cardInfo = {
             companyName,
             workType,
+            location,
+            type,
             salary,
             status: 'INTERVIEW',
             description
         }
+        const statusTag = parentNode.querySelector('.status')
+        statusTag.innerText = 'INTERVIEW'
+        statusTag.className = 'cursor-pointer active:translate-y-0.5 font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm w-[22%]';
 
         const companyExist = interviewList.find(item => item.companyName === cardInfo.companyName)
 
@@ -111,19 +129,22 @@ mainContainer.addEventListener('click', function (event)
             interviewList.push(cardInfo)
 
         }
-       rejectedList =rejectedList.filter(item=> item.companyName !== cardInfo.companyName)
-     if( currentStatus == 'rejected-filter-btn')
-     {
-        renderRejected();
-     }
+        rejectedList = rejectedList.filter(item => item.companyName !== cardInfo.companyName)
+        if (currentStatus == 'rejected-filter-btn') {
+            renderRejected();
+        }
         calculateCnt();
-       
+
     }
     else if (event.target.classList.contains('rejected-btn')) {
         const parentNode = event.target.parentNode.parentNode;
 
+        
+
         const companyName = parentNode.querySelector('.company-name').innerText;
         const workType = parentNode.querySelector('.work-type').innerText;
+        const location = parentNode.querySelector('.location').innerText;
+        const type = parentNode.querySelector('.type').innerText;
         const salary = parentNode.querySelector('.salary').innerText;
         const status = parentNode.querySelector('.status').innerText;
         const description = parentNode.querySelector('.description').innerText;
@@ -132,10 +153,15 @@ mainContainer.addEventListener('click', function (event)
         const cardInfo = {
             companyName,
             workType,
+            location,
+            type,
             salary,
             status: 'REJECTED',
             description
         }
+        const statusTag = parentNode.querySelector('.status')
+        statusTag.innerText = 'REJECTED'
+        statusTag.className = 'cursor-pointer active:translate-y-0.5 font-medium text-red-600 px-4 py-2 border border-b-red-600 rounded-sm w-[22%]';
 
         const companyExist = rejectedList.find(item => item.companyName === cardInfo.companyName)
 
@@ -145,35 +171,35 @@ mainContainer.addEventListener('click', function (event)
         }
 
         interviewList = interviewList.filter(item => item.companyName !== companyName)
-        if(currentStatus == 'interview-filter-btn')
-        {
-         renderInterview();
+        if (currentStatus == 'interview-filter-btn') {
+            renderInterview();
         }
         calculateCnt();
-       
+
     }
 })
 
-function updateTotal(){
-    const cards = document.getElementById('all-cards')
-     totalElement.innerText= cards.length
-}
+// function updateTotal() {
+//     const cards = document.getElementById('all-cards')
+//     totalElement.innerText = cards.length
+// }
 
 function renderInterview() {
 
     filteredSection.innerHTML = ''
-    if(interviewList.length === 0){
-       filteredSection.innerHTML=` <div id="emty-section " class="flex flex-col items-center text-center justify-center px-[100px] py-[300px] bg-white"> 
+    if (interviewList.length === 0) {
+        filteredSection.innerHTML = ` <div id="emty-section " class="flex flex-col items-center text-center justify-center px-[100px] py-[300px] bg-white"> 
            <img src="./jobs.png" />
           <h2 class="font-bold">No jobs available</h2>
           <p>Check back soon for new job opportunities </p>
           </div> 
-          return;`
+          `
+           return;
     }
 
     for (let interview of interviewList) {
         let div = document.createElement('div')
-        div.className = `flex justify-between  bg-white p-5 rounded-md`
+        div.className = `flex justify-between  bg-white p-5 rounded-md mb-4`
         div.innerHTML = `<!-- mainCard-1 -->
                 <div class="space-y-4">
                     <!-- part-1 -->
@@ -181,14 +207,18 @@ function renderInterview() {
                         <h2 class="company-name font-bold">${interview.companyName}</h2>
                         <p class="work-type text-gray-500">${interview.workType}</p>
                     </div>
-                    <!-- part-2 -->
+                     <!-- part-2 -->
+                   <div><p class="location">${interview.location}</p></div>
+                   <!-- part-3 -->
+                    <div><p class="type">${interview.type}</p></div>
+                    <!-- part-4 -->
                     <div class="">
                         <p class="salary text-gray-500">${interview.salary}</p>
                     </div>
-                    <!-- part-3 -->
+                    <!-- part-5 -->
                     <p class="status bg-gray-200 px-4 py-2 w-[21%]">${interview.status}</p>
                     <p  class="description">${interview.description}</p>
-                    <!-- part-4 -->
+                    <!-- part-6 -->
                     <div class="flex gap-3">
                         <button class="interview-btn cursor-pointer active:translate-y-0.5 font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm">INTERVIEW</button>
                         <button class="rejected-btn cursor-pointer active:translate-y-0.5 font-medium text-red-500 px-4 py-2 border border-b-red-500 rounded-sm ">REJECTED</button>
@@ -205,18 +235,19 @@ function renderInterview() {
 function renderRejected() {
 
     filteredSection.innerHTML = ''
-    if(rejectedList.length === 0){
-       filteredSection.innerHTML=` <div id="emty-section " class="flex flex-col items-center text-center justify-center px-[100px] py-[300px] bg-white"> 
+    if (rejectedList.length === 0) {
+        filteredSection.innerHTML = ` <div id="emty-section " class="flex flex-col items-center text-center justify-center px-[100px] py-[300px] bg-white"> 
            <img src="./jobs.png" />
           <h2 class="font-bold">No jobs available</h2>
           <p>Check back soon for new job opportunities </p>
           </div> 
-          return;`
+          `
+          return;
     }
 
     for (let rejected of rejectedList) {
         let div = document.createElement('div')
-        div.className = `flex justify-between  bg-white p-5 rounded-md`
+        div.className = `flex justify-between  bg-white p-5 rounded-md mb-4`
         div.innerHTML = `<!-- mainCard-1 -->
                 <div class="space-y-4">
                     <!-- part-1 -->
@@ -225,13 +256,17 @@ function renderRejected() {
                         <p class="work-type text-gray-500">${rejected.workType}</p>
                     </div>
                     <!-- part-2 -->
+                   <div><p class="location">${rejected.location}</p></div>
+                   <!-- part-3 -->
+                    <div><p class="type">${rejected.type}</p></div>
+                    <!-- part-4 -->
                     <div class="">
                         <p class="salary text-gray-500">${rejected.salary}</p>
                     </div>
-                    <!-- part-3 -->
+                    <!-- part-5 -->
                     <p class="status bg-gray-200 px-4 py-2 w-[21%]">${rejected.status}</p>
                     <p  class="description">${rejected.description}</p>
-                    <!-- part-4 -->
+                    <!-- part-6 -->
                     <div class="flex gap-3">
                         <button class="interview-btn cursor-pointer active:translate-y-0.5 font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm">INTERVIEW</button>
                         <button class="rejected-btn cursor-pointer active:translate-y-0.5 font-medium text-red-500 px-4 py-2 border border-b-red-500 rounded-sm ">REJECTED</button>
