@@ -9,9 +9,9 @@
 </head>
 
 <body class="bg-gray-100 text-gray-700 font-geist">
-    <header class="w-[80%] mx-auto">
-        <h1 class="text-4xl font-bold mt-6 mb-5 ">Job Application Tracker</h1>
-        <div class="grid grid-cols-3 gap-8 ">
+    <header class="w-full md:w-[80%] mx-auto px-4">
+        <h1 class="text-2xl md:text-4xl font-bold mt-6 mb-5 ">Job Application Tracker</h1>
+        <div class="grid grid-cols-3 md:gap-8 gap-4 ">
             <div class="bg-white p-4 rounded-[5px]">
                 <p>Total</p>
                 <p id="total" class="font-bold">0</p>
@@ -26,8 +26,8 @@
             </div>
         </div>
     </header>
-    <hr class="w-[80%] mx-auto my-8 border-gray-300">
-    <main class="w-[80%] mx-auto">
+    <hr class="w-full md:w-[80%] mx-auto my-8 px-4 border-gray-300">
+    <main class="w-full md:w-[80%] mx-auto px-4">
         <div class="flex justify-between">
             <h2 class="mb-4 font-bold text-2xl">Available Jobs </h2>
             <p id="job-cnt" class="text-gray-500">0 jobs</p>
@@ -44,12 +44,12 @@
                 id="rejected-filter-btn">REJECTED</button>
         </div>
 
-        <section id="filtered-section" class="hidden">
+        <section id="filtered-section" class="hidden w-full">
 
-            <div id="emty-section " class="flex flex-col items-center text-center justify-center px-[100px] py-[300px] bg-white"> 
-           <img src="./jobs.png" alt="">
-          <h2 class="font-bold">No jobs available</h2>
-          <p>Check back soon for new job opportunities </p>
+            <div id="emty-section " class="flex flex-col items-center text-center justify-center  bg-white rounded-md min-h-[300px] md:min-h-[350px]"> 
+           <img src="./jobs.png" alt="" class="w-24 sm:w-32 md:w-40 mb-6 object-contain">
+          <h2 class="font-bold text-lg sm:text-xl md:text-2xl mb-2">No jobs available</h2>
+          <p  class="text-sm sm:text-base md:text-lg" >Check back soon for new job opportunities </p>
           </div> 
 
         </section>
@@ -83,7 +83,7 @@
 
                 </div>
                 <!-- mainCard-2 -->
-                <div class="delete-btn"><button class=" delete-button justify-end cursor-pointer active:translate-y-0.5"><img src="./Group 1.png" alt=""></button></div>
+                <div class="delete-btn"><button class=" delete-button justify-end cursor-pointer active:translate-y-0.5"><img src="./Group 1.png" alt="delete" class="w-8 h-8 md:h-6 object-contain"></button></div>
             </div>
             <!-- card-2 -->
             <div class="div-card flex justify-between  bg-white p-5 rounded-md">
