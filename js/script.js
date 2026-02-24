@@ -121,7 +121,7 @@ mainContainer.addEventListener('click', function (event) {
         }
         const statusTag = parentNode.querySelector('.status')
         statusTag.innerText = 'INTERVIEW'
-        statusTag.className = 'cursor-pointer active:translate-y-0.5 font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm w-[22%]';
+        statusTag.className = 'cursor-pointer active:translate-y-0.5 font-medium text-green-600 px-4 py-2 border border-b-green-600 rounded-sm w-fit';
 
         const companyExist = interviewList.find(item => item.companyName === cardInfo.companyName)
 
