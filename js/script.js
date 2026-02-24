@@ -188,10 +188,10 @@ function renderInterview() {
 
     filteredSection.innerHTML = ''
     if (interviewList.length === 0) {
-        filteredSection.innerHTML = ` <div id="emty-section " class="flex flex-col items-center text-center justify-center px-[100px] py-[300px] bg-white"> 
-           <img src="./jobs.png" />
-          <h2 class="font-bold">No jobs available</h2>
-          <p>Check back soon for new job opportunities </p>
+        filteredSection.innerHTML = ` <div id="emty-section" class="flex flex-col items-center text-center justify-center  bg-white rounded-md min-h-[300px] md:min-h-[350px] w-full p-5"> 
+           <img  src="./jobs.png" class="w-20 sm:w-24 md:w-28 mb-4 object-contain/>
+          <h2 class="font-bold text-base sm:text-lg md:text-2xl mb-2">No jobs available</h2>
+          <p class="text-sm sm:text-base md:text-lg">Check back soon for new job opportunities </p>
           </div> 
           `
            return;
@@ -236,10 +236,10 @@ function renderRejected() {
 
     filteredSection.innerHTML = ''
     if (rejectedList.length === 0) {
-        filteredSection.innerHTML = ` <div id="emty-section " class="flex flex-col items-center text-center justify-center px-[100px] py-[300px] bg-white"> 
-           <img src="./jobs.png" />
-          <h2 class="font-bold">No jobs available</h2>
-          <p>Check back soon for new job opportunities </p>
+        filteredSection.innerHTML = ` <div id="emty-section" class="flex flex-col items-center text-center justify-center  bg-white rounded-md min-h-[300px] md:min-h-[350px] w-full p-5"> 
+           <img  src="./jobs.png" class="w-20 sm:w-24 md:w-28 mb-4 object-contain"/>
+          <h2 class="font-bold text-base sm:text-lg md:text-2xl mb-2">No jobs available</h2>
+          <p class="text-sm sm:text-base md:text-lg">Check back soon for new job opportunities </p>
           </div> 
           `
           return;
