@@ -274,7 +274,7 @@ function renderRejected() {
 
                 </div>
                 <!-- mainCard-2 -->
-                <div><button class="justify-end cursor-pointer active:translate-y-0.5"><img src="./Group 1.png" alt=""></button></div>`
+                <div><button class="justify-end cursor-pointer active:translate-y-0.5"><img src="./Group 1.png" alt="" class="w-8 h-8 md:h-6 object-contain"></button></div>`
 
         filteredSection.appendChild(div)
     }
