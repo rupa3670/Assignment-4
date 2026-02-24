@@ -11,13 +11,23 @@ const interviewFilterBtn = document.getElementById('interview-filter-btn');
 const rejectedFilterBtn = document.getElementById('rejected-filter-btn')
 
 const allCardSection = document.getElementById('all-cards');
+
 const mainContainer = document.querySelector('main');
 const filteredSection = document.getElementById('filtered-section');
 
+const jobCounts=document.getElementById('job-cnt');
+
+
+
 function calculateCnt() {
+    const currentJobs=allCardSection.children.length;
     total.innerText = allCardSection.children.length;
     interviewCount.innerText = interviewList.length;
     rejectedCount.innerText = rejectedList.length
+
+    if(jobCounts){
+        jobCounts.innerText=`${currentJobs} jobs`;
+    }
 }
 calculateCnt()
 
@@ -53,9 +63,32 @@ function toggleStyle(id) {
     }
 
 }
+mainContainer.addEventListener('click', function (event)
+ {
+    if(event.target.closest('.delete-btn')){
+        const card=event.target.closest('.div-card')
+        if(card){
+            const companyName=card.querySelector('.company-name').innerText;
 
-mainContainer.addEventListener('click', function (event) {
-    if (event.target.classList.contains('interview-btn')) {
+            interviewList=interviewList.filter(item=>item.companyName !== companyName);
+           rejectedList=rejectedList.filter(item=>item.companyName !== companyName);
+
+           card.remove();
+           calculateCnt();
+           if(currentStatus==='interview-filter-btn'){
+            renderInterview()
+           }
+           if(currentStatus==='rejected-filter-btn')
+        
+           {
+            renderRejected()
+           }
+        }
+
+
+    }
+    
+    else if (event.target.classList.contains('interview-btn')) {
         const parentNode = event.target.parentNode.parentNode;
         const companyName = parentNode.querySelector('.company-name').innerText
         const workType = parentNode.querySelector('.work-type').innerText;
@@ -120,6 +153,11 @@ mainContainer.addEventListener('click', function (event) {
        
     }
 })
+
+function updateTotal(){
+    const cards = document.getElementById('all-cards')
+     totalElement.innerText= cards.length
+}
 
 function renderInterview() {
 
