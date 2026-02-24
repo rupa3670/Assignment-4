@@ -161,7 +161,7 @@ mainContainer.addEventListener('click', function (event) {
         }
         const statusTag = parentNode.querySelector('.status')
         statusTag.innerText = 'REJECTED'
-        statusTag.className = 'cursor-pointer active:translate-y-0.5 font-medium text-red-600 px-4 py-2 border border-b-red-600 rounded-sm w-[22%]';
+        statusTag.className = 'cursor-pointer active:translate-y-0.5 font-medium text-red-600 px-4 py-2 border border-b-red-600 rounded-sm w-fit';
 
         const companyExist = rejectedList.find(item => item.companyName === cardInfo.companyName)
 
@@ -216,7 +216,7 @@ function renderInterview() {
                         <p class="salary text-gray-500">${interview.salary}</p>
                     </div>
                     <!-- part-5 -->
-                    <p class="status bg-gray-200 px-4 py-2 w-[21%]">${interview.status}</p>
+                    <p class="status bg-gray-200 px-4 py-2 w-fit">${interview.status}</p>
                     <p  class="description">${interview.description}</p>
                     <!-- part-6 -->
                     <div class="flex gap-3">
@@ -264,7 +264,7 @@ function renderRejected() {
                         <p class="salary text-gray-500">${rejected.salary}</p>
                     </div>
                     <!-- part-5 -->
-                    <p class="status bg-gray-200 px-4 py-2 w-[21%]">${rejected.status}</p>
+                    <p class="status bg-gray-200 px-4 py-2 w-fit">${rejected.status}</p>
                     <p  class="description">${rejected.description}</p>
                     <!-- part-6 -->
                     <div class="flex gap-3">
